@@ -11,6 +11,7 @@ public class AjaxdisplayController {
 	private int count2 = 0;
 
 	@GetMapping("/main1")
+<<<<<<< HEAD
 	public String showMain(Model model){
 
 		model.addAttribute("count1", count1);
@@ -43,3 +44,15 @@ public class AjaxdisplayController {
 	}
 }
 
+=======
+		public String showMain1(Model model) {
+			count1++;
+			count2++;
+
+			model.addAttribute("count1", count1);
+			model.addAttribute("count2", count2);
+
+			return "main1";
+		}
+	}
+>>>>>>> 6de6b90b7ab75ad4c4e8357caa78089b399ab574
