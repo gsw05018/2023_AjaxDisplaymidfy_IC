@@ -19,13 +19,17 @@
 </div>
 
 <script>
-    const {createApp} = Vue
+    // Vue 객체로부터 createApp 함수를 가져옵니다.
+    const { createApp } = Vue;
 
+    // box1 변수에 새로운 Vue 애플리케이션을 생성하여 할당합니다.
+    // 이 애플리케이션은 'count'라는 데이터 속성을 가지며, 초기값은 55입니다.
+    // .count-1-display 클래스에 해당하는 요소에 마운트(연결)합니다.
     const box1 = createApp({
         data() {
             return {
-                count : 55
-            }
+                count: 55 // 'count' 데이터 속성을 55로 초기화합니다.
+            };
         }
     }).mount('.count-1-display');
 </script>
