@@ -3,8 +3,14 @@
         fetch('/count1')
             .then(response => response.json())
             .then(json => {
-                document.querySelector('.count-1-display').innerHTML = json.data;
+                document.querySelector('.count-1-display_1').innerHTML = json.data;
+                document.querySelector('.count-1-display_2').innerHTML = json.data +1;
+                document.querySelector('.count-1-display_3').innerHTML = json.data+2;
+                document.querySelector('.count-1-display_4').innerHTML = json.data+3;
             })
+                  setTimeout(Count1_updateDisplay, 1000);
+     // 1초 뒤에 Count1__updateDisplay 함수가 다시 실행되도록 예약
+    // 이렇게 특정 시간간격으로 클라이언트가 서버에게 계속 물어보는 방식을 폴링 이라고 한다.
     }
 
     function Count2_updateDisplay(){
@@ -13,12 +19,9 @@
             .then(json => {
                 document.querySelector('.count-2-display').innerHTML = json.data;
             })
-                // 1초 뒤에 Count1__updateDisplay 함수가 다시 실행되도록 예약
-    setTimeout(Count1_updateDisplay, 5000); // 추가
-    setTimeout(Count2_updateDisplay, 5000); // 추가
-    // 이렇게 특정 시간간격으로 클라이언트가 서버에게 계속 물어보는 방식을 폴링 이라고 한다.
-    }
 
+    }
+  Count1_updateDisplay();
 </script>
 
 
@@ -30,7 +33,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 10rem;
+        font-size: 2rem;
+        flex-direction: column;
     }
 </style>
 
@@ -39,7 +43,10 @@
 공간 1
 <button onclick="Count1_updateDisplay();">갱신</button>
 <div class="box count-1-display" >
-    <th:block th:text="${count1}"></th:block>
+    <span class=" count-1-display_1" style="color : blue ;"></span>
+    <span class=" count-1-display_2" style="color : blue ;"></span>
+    <span class=" count-1-display_3" style="color : blue ;"></span>
+    <span class=" count-1-display_4" style="color : blue ;"></span>
 </div>
 공간 2
 <button onclick="Count2_updateDisplay();">갱신</button>
