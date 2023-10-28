@@ -1,12 +1,41 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!--vue cdn-->
+
+
+메인 1
+<hr>
+공간 1
+<button onclick="Count1_updateDisplay();">갱신</button>
+<div class="box count-1-display" >
+    <span  style="color : blue ;">{{count}}</span>
+    <span  style="color : red ;">{{count + 3 }}</span>
+    <span  style="color : pink ;">{{count + 2 }}</span>
+    <span  style="color : yellow ;">{{count + 1}}</span>
+</div>
+공간 2
+<button onclick="Count2_updateDisplay();">갱신</button>
+<div class="box count-2-display" >
+    <th:block th:text="${count2}"></th:block>
+</div>
+
+<script>
+    const {createApp} = Vue
+
+    const box1 = createApp({
+        data() {
+            return {
+                count : 55
+            }
+        }
+    }).mount('.count-1-display');
+</script>
+
 <script>
     function Count1_updateDisplay(){
         fetch('/count1')
             .then(response => response.json())
             .then(json => {
-                document.querySelector('.count-1-display_1').innerHTML = json.data;
-                document.querySelector('.count-1-display_2').innerHTML = json.data +1;
-                document.querySelector('.count-1-display_3').innerHTML = json.data+2;
-                document.querySelector('.count-1-display_4').innerHTML = json.data+3;
+                box1.count = json.data;
             })
                   setTimeout(Count1_updateDisplay, 1000);
      // 1초 뒤에 Count1__updateDisplay 함수가 다시 실행되도록 예약
@@ -23,36 +52,6 @@
     }
   Count1_updateDisplay();
 </script>
-
-
-<style>
-    .box {
-        width: 500px;
-        height: 500px;
-        border: 2px solid red;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2rem;
-        flex-direction: column;
-    }
-</style>
-
-메인 1
-<hr>
-공간 1
-<button onclick="Count1_updateDisplay();">갱신</button>
-<div class="box count-1-display" >
-    <span class=" count-1-display_1" style="color : blue ;"></span>
-    <span class=" count-1-display_2" style="color : blue ;"></span>
-    <span class=" count-1-display_3" style="color : blue ;"></span>
-    <span class=" count-1-display_4" style="color : blue ;"></span>
-</div>
-공간 2
-<button onclick="Count2_updateDisplay();">갱신</button>
-<div class="box count-2-display" >
-    <th:block th:text="${count2}"></th:block>
-</div>
 
 
 <!--fetch: fetch 함수는 네트워크 요청을 보내고 응답을 받기 위해 사용되는 API입니다. 주어진 URL로부터 데이터를 가져옵니다. 해당 URL은 '/count1' 또는 '/count2'로 설정되어 있습니다.-->
